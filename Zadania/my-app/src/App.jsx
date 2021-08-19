@@ -1,27 +1,62 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
+import Fruit from "./components/Fruit";
+import Reset from "./components/Reset";
 import './App.css';
 
-// Stwórz komponent App
+const App = () => {
+    const [sum, setSum] = useState(0)
+    const [counter, setCounter] = useState(0)
+    const [input, setInput] = useState('')
 
-class App extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = { count: 0 }
+    const fruits = ['orange', 'apple', 'plum', 'tomato', 'cucumber'];
 
-        this.handleClick = this.handleClick.bind(this)
+    const handleClick = (price) => {
+        setSum( sum + price)
     }
 
-    handleClick() {
-        this.setState({ count: this.state.count + 1 })
+    const resetSum = () => {
+        setSum(0)
     }
 
-    render() {
-        return (
-            <div style={{backgroundColor: 'navy', width: '100vw', height: '100vh'}}>
-                <button onClick={this.handleClick}>+1</button>
-            </div>
-        )
+    const handleChange = (e) => {
+        setInput(e.target.value)
     }
-}
+
+    const inputStyle = {
+        borderColor: (input.length >= 6 && input.includes('@') && input.includes('.')) ? 'green' : 'red',
+        borderWidth: '4px'
+    }
+
+    useEffect(() => {
+        setCounter(counter + 1)
+    }, [sum])
+
+    return (
+        <div>
+            <div style={{backgroundColor: 'tomato', width: '100px', height: '100px'}}>Zadanie2</div>
+
+            <ul>
+                {fruits.map(el => (
+                    <li key={`list_${el}`}>
+                        {el}
+                    </li>
+                ))}
+            </ul>
+
+            {fruits.map(el => (
+                <Fruit key={el} fruit={el} setSum={handleClick}/>
+            ))}
+
+            <p>{sum}</p>
+
+            <Reset reset={resetSum}/>
+            <h2>counter</h2>
+            <p>{counter}</p>
+
+            <h2>email input</h2>
+            <input style={inputStyle} type="text" onChange={e => handleChange(e)} value={input}/>
+        </div>
+    )
+};
 
 export default App;
