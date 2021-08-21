@@ -1,18 +1,25 @@
+import {calcBoard} from "../utils/calcBoard";
+
 const Navigation = ({ set, rows, columns, bombs }) => {
     const minRows = 3;
     const minColumns = 9;
     const minBombs = 1;
 
     const handleRowsChange = (e) => {
-        (e.target.value >= minRows) && set(e.target.value, 'rows')
+        (e.target.value >= minRows) && set(parseInt(e.target.value), 'rows')
     }
 
     const handleColumnsChange = (e) => {
-        (e.target.value >= minColumns) && set(e.target.value, 'columns')
+        (e.target.value >= minColumns) && set(parseInt(e.target.value), 'columns')
     }
 
     const handleBombsChange = (e) => {
-        (e.target.value >= minBombs) && set(e.target.value, 'bombs')
+        const tilesCount = columns * rows;
+        (e.target.value >= minBombs && e.target.value < tilesCount) && set(parseInt(e.target.value), 'bombs')
+    }
+
+    const handleStart = () => {
+        set(calcBoard(rows, columns, bombs), 'board')
     }
 
     return (
@@ -29,8 +36,7 @@ const Navigation = ({ set, rows, columns, bombs }) => {
                 <label htmlFor={'bombs'}>Bombs</label>
                 <input type="number" id={'bombs'} value={bombs} onChange={e => handleBombsChange(e)}/>
             </div>
-            <button>Start</button>
-            <button>Reset</button>
+            <button onClick={handleStart}>Start</button>
         </div>
     )
 };

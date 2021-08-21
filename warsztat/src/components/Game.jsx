@@ -1,45 +1,58 @@
-const Game = () => {
+import Tile from "./Tile";
+import {useEffect, useState} from "react";
+
+const Game = ({ bombs, board, restart }) => {
+    const [lost, setLost] = useState(false)
+    const [won, setWon] = useState(false)
+    const [revealed, setRevealed] = useState([])
+    const [taggedBombs, setTaggedBombs] = useState(0)
+    const [flags, setFlags] = useState(0)
+
+    if(taggedBombs === bombs && !won) {
+        setWon(true)
+    }
+
+    useEffect(() => {
+        setRevealed([])
+        setTaggedBombs(0)
+        setFlags(0)
+    }, [restart])
+
+    useEffect(() => {
+        setLost(false)
+        setWon(false)
+    }, [board])
+
     return (
-        <div className={'game'}>
+        <div className={`game ${!board.length && 'hidden'}`}>
             <div className={'top'}>
-                <div className={'topCounter'}>092</div>
-                <button className={'smileyWrapper'}></button>
-                <div className={'topCounter'}>001</div>
+                <div className={'topCounter'}>{('000' + flags).substr(-3)}</div>
+                <button className={`smileyWrapper ${lost && 'lost'} ${won && 'won'}`}></button>
+                <div className={'topCounter'}>{('000' + bombs).substr(-3)}</div>
             </div>
             <div className={'main'}>
-                <div className={'row'}>
-                    <div className={'tile'}></div>
-                    <div className={'tile'}></div>
-                    <div className={'tile'}></div>
-                    <div className={'tile'}></div>
-                    <div className={'tile'}></div>
-                    <div className={'tile'}></div>
-                    <div className={'tile'}></div>
-                    <div className={'tile'}></div>
-                </div>
-                <div className={'row'}>
-                    <div className={'tile'}></div>
-                    <div className={'tile'}></div>
-                    <div className={'tile'}></div>
-                    <div className={'tile'}></div>
-                    <div className={'tile'}></div>
-                    <div className={'tile'}></div>
-                    <div className={'tile flag'}></div>
-                    <div className={'tile open bomb'}></div>
-                </div>
-                <div className={'row'}>
-                    <div className={'tile open one'}></div>
-                    <div className={'tile open two'}></div>
-                    <div className={'tile open three'}></div>
-                    <div className={'tile open four'}></div>
-                    <div className={'tile open five'}></div>
-                    <div className={'tile open six'}></div>
-                    <div className={'tile open seven'}></div>
-                    <div className={'tile open eight'}></div>
-                </div>
+                {board.map((row) => (
+                    <div className={'row'}>
+                        {row.map((column) => (
+                            <Tile
+                                data={column}
+                                lost={lost}
+                                won={won}
+                                setLost={setLost}
+                                setRevealed={setRevealed}
+                                revealed={revealed}
+                                restart={restart}
+                                setTaggedBombs={setTaggedBombs}
+                                taggedBombs={taggedBombs}
+                                flags={flags}
+                                setFlags={setFlags}
+                            />
+                        ))}
+                    </div>
+                ))}
             </div>
         </div>
     )
-}
+};
 
 export default Game;

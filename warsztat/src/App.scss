@@ -80,11 +80,13 @@ button {
 
   .game {
     position: relative;
-    //width: 500px;
-    //height: 800px;
     padding: 8px;
 
-    @include borderConvex
+    @include borderConvex;
+
+    &.hidden {
+      display: none;
+    }
   }
 }
 
@@ -116,7 +118,15 @@ button {
     width: 40px;
     height: 40px;
 
-    &:active {
+    &.lost {
+      background-position: 43px 35px;
+    }
+
+    &.won {
+      background-position: 79px 35px;
+    }
+
+    &:not(.lost):not(.won):active {
       @include borderConcave;
       background-position: 114px 35px;
     }
@@ -126,8 +136,6 @@ button {
 }
 
 .main {
-  height: calc(800px - 60px - 4 * 8px);
-
   @include borderConcave;
 }
 
@@ -159,7 +167,7 @@ button {
     border: 1px solid #787878;
     background-image: $sprites;
     background-size: 115px;
-    background-positsion: 177px 55px;
+    background-position: 177px 55px;
 
     &.one {
       background-position: 88px 109px;
@@ -174,7 +182,7 @@ button {
     }
 
     &.four {
-      background-position: 0px 82px;
+      background-position: 0 82px;
     }
 
     &.five {
@@ -194,7 +202,11 @@ button {
     }
 
     &.bomb {
-      background-position: 0px 110px;
+      background-position: 0 110px;
+
+      &.red {
+        background-color: #ec0701;
+      }
     }
   }
 }
