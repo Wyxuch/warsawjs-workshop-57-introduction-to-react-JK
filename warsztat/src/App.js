@@ -41,8 +41,6 @@ class App extends React.Component {
               <div className={'gameWrapper'}>
                   <Game
                     set={this.set}
-                    rows={this.state.rows}
-                    columns={this.state.columns}
                     bombs={this.state.bombs}
                     board={this.state.board}
                     restart={this.restart}

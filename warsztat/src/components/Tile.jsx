@@ -2,7 +2,7 @@ import {useEffect, useState} from 'react'
 import {propagate} from "../utils/propagate";
 import {tileClassName} from "../utils/tileClassName";
 
-const Tile = ({ data, lost, setLost, won, revealed, setRevealed, restart, taggedBombs, setTaggedBombs, flags, setFlags }) => {
+const Tile = ({ data, lost, setLost, won, revealed, setRevealed, restart = 0, taggedBombs, setTaggedBombs, flags, setFlags }) => {
     const [open, setOpen] = useState(false)
     const [clicked, setClicked] = useState(false)
     const [flagged, setFlagged] = useState(false)
