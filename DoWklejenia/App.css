@@ -1,0 +1,182 @@
+@import url('https://fonts.googleapis.com/css2?family=Wallpoet&display=swap');
+ * {
+	 font-family: sans-serif;
+	 box-sizing: border-box;
+}
+ button {
+	 cursor: pointer;
+}
+ .App {
+	 min-height: 100vh;
+	 background: linear-gradient(315deg, #f1f1f1, #cbcbcb);
+}
+ .navigation {
+	 height: 70px;
+	 display: flex;
+	 flex-grow: 0;
+	 justify-content: center;
+	 align-items: center;
+	 background-color: #bbb;
+	 border: 3px solid #fff;
+	 border-right-color: #7b7b7b;
+	 border-bottom-color: #7b7b7b;
+}
+ .navigation label {
+	 font-weight: bold;
+	 margin-right: 8px;
+}
+ .navigation input {
+	 font-weight: bold;
+	 background-color: #bbb;
+	 border: 3px solid #7b7b7b;
+	 border-right-color: #fff;
+	 border-bottom-color: #fff;
+}
+ .navigation > button {
+	 font-size: 1rem;
+	 font-weight: bold;
+	 padding: 8px;
+	 min-width: 70px;
+	 border: 3px solid #fff;
+	 border-right-color: #7b7b7b;
+	 border-bottom-color: #7b7b7b;
+}
+ .navigation > button:active {
+	 background-color: #bbb;
+	 border: 3px solid #7b7b7b;
+	 border-right-color: #fff;
+	 border-bottom-color: #fff;
+}
+ .navigation > * {
+	 margin: 0 16px;
+}
+ .gameWrapper {
+	 display: flex;
+	 min-height: calc(100vh - 70px);
+	 justify-content: center;
+	 align-items: center;
+}
+ .gameWrapper * {
+	 background-color: #bdbdbd;
+}
+ .gameWrapper .game {
+	 position: relative;
+	 padding: 8px;
+	 border: 3px solid #fff;
+	 border-right-color: #7b7b7b;
+	 border-bottom-color: #7b7b7b;
+}
+ .gameWrapper .game.hidden {
+	 display: none;
+}
+ .top {
+	 display: flex;
+	 justify-content: center;
+	 align-items: center;
+	 height: 60px;
+	 width: 100%;
+	 margin-bottom: 8px;
+	 border: 3px solid #7b7b7b;
+	 border-right-color: #fff;
+	 border-bottom-color: #fff;
+}
+ .top .topCounter {
+	 font-family: Wallpoet, sans-serif;
+	 font-size: 36px;
+	 text-align: center;
+	 color: #ec0701;
+	 background: #000;
+	 padding: 0;
+	 margin: 0 8px;
+	 min-width: 91px;
+}
+ .top .smileyWrapper {
+	 background-image: url('./assets/sprites.png');
+	 background-size: 150px;
+	 background-position: 150px 35px;
+	 border: 3px solid #fff;
+	 border-right-color: #7b7b7b;
+	 border-bottom-color: #7b7b7b;
+	 width: 40px;
+	 height: 40px;
+}
+ .top .smileyWrapper.lost {
+	 background-position: 43px 35px;
+}
+ .top .smileyWrapper.won {
+	 background-position: 79px 35px;
+}
+ .top .smileyWrapper:not(.lost):not(.won):active {
+	 border: 3px solid #7b7b7b;
+	 border-right-color: #fff;
+	 border-bottom-color: #fff;
+	 background-position: 114px 35px;
+}
+ .main {
+	 border: 3px solid #7b7b7b;
+	 border-right-color: #fff;
+	 border-bottom-color: #fff;
+}
+ .row {
+	 height: 30px;
+}
+ .tile {
+	 display: inline-block;
+	 width: 30px;
+	 height: 30px;
+	 border: 3px solid #fff;
+	 border-right-color: #7b7b7b;
+	 border-bottom-color: #7b7b7b;
+}
+ .tile:active {
+	 border: 3px solid #7b7b7b;
+	 border-right-color: #fff;
+	 border-bottom-color: #fff;
+}
+ .tile.flag {
+	 background-image: url('./assets/sprites.png');
+	 background-size: 100px;
+	 background-position: 177px 48px;
+}
+ .tile.flag:active {
+	 border: 3px solid #fff;
+	 border-right-color: #7b7b7b;
+	 border-bottom-color: #7b7b7b;
+}
+ .tile.open {
+	 border: 1px solid #787878;
+	 background-image: url('./assets/sprites.png');
+	 background-size: 115px;
+	 background-position: 177px 55px;
+}
+ .tile.open.one {
+	 background-position: 88px 109px;
+}
+ .tile.open.two {
+	 background-position: 61px 109px;
+}
+ .tile.open.three {
+	 background-position: 34px 109px;
+}
+ .tile.open.four {
+	 background-position: 0 82px;
+}
+ .tile.open.five {
+	 background-position: 88px 82px;
+}
+ .tile.open.six {
+	 background-position: 61px 82px;
+}
+ .tile.open.seven {
+	 background-position: 34px 82px;
+}
+ .tile.open.eight {
+	 background-position: 1px 55px;
+}
+ .tile.open.bomb {
+	 background-position: 0 110px;
+}
+ .tile.open.bomb.red {
+	 background-color: #ec0701;
+}
+ 

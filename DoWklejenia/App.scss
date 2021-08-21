@@ -1,0 +1,212 @@
+@import url('https://fonts.googleapis.com/css2?family=Wallpoet&display=swap');
+
+$sprites: url('./assets/sprites.png');
+
+@mixin borderConvex {
+  border: 3px solid #ffffff;
+  border-right-color: #7b7b7b;
+  border-bottom-color: #7b7b7b;
+}
+
+@mixin borderConcave {
+  border: 3px solid #7b7b7b;
+  border-right-color: #ffffff;
+  border-bottom-color: #ffffff;
+}
+
+* {
+  font-family: sans-serif;
+  box-sizing: border-box;
+}
+
+button {
+  cursor: pointer;
+}
+
+.App {
+  min-height: 100vh;
+  background: linear-gradient(315deg, #f1f1f1, #cbcbcb);
+}
+
+.navigation {
+  height: 70px;
+  display: flex;
+  flex-grow: 0;
+  justify-content: center;
+  align-items: center;
+
+  background-color: #bbbbbb;
+
+  @include borderConvex;
+
+  label {
+    font-weight: bold;
+    margin-right: 8px;
+  }
+
+  input {
+    font-weight: bold;
+    background-color: #bbbbbb;
+    @include borderConcave;
+  }
+
+  & > button {
+    font-size: 1rem;
+    font-weight: bold;
+    padding: 8px;
+    min-width: 70px;
+    @include borderConvex;
+
+    &:active {
+      background-color: #bbbbbb;
+      @include borderConcave;
+    }
+  }
+
+  & > * {
+    margin: 0 16px;
+  }
+}
+
+.gameWrapper {
+  display: flex;
+  min-height: calc(100vh - 70px);
+  justify-content: center;
+  align-items: center;
+
+  * {
+    background-color: #bdbdbd;
+  }
+
+  .game {
+    position: relative;
+    padding: 8px;
+
+    @include borderConvex;
+
+    &.hidden {
+      display: none;
+    }
+  }
+}
+
+.top {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 60px;
+  width: 100%;
+  margin-bottom: 8px;
+
+  .topCounter {
+    font-family: Wallpoet, sans-serif;
+    font-size: 36px;
+    text-align: center;
+    color: #ec0701;
+    background: #000;
+    padding: 0;
+    margin: 0 8px;
+    min-width: 91px;
+  }
+
+  .smileyWrapper {
+    background-image: $sprites;
+    background-size: 150px;
+    background-position: 150px 35px;
+
+    @include borderConvex;
+    width: 40px;
+    height: 40px;
+
+    &.lost {
+      background-position: 43px 35px;
+    }
+
+    &.won {
+      background-position: 79px 35px;
+    }
+
+    &:not(.lost):not(.won):active {
+      @include borderConcave;
+      background-position: 114px 35px;
+    }
+  }
+
+  @include borderConcave;
+}
+
+.main {
+  @include borderConcave;
+}
+
+.row {
+  height: 30px;
+}
+
+.tile {
+  display: inline-block;
+  width: 30px;
+  height: 30px;
+
+  @include borderConvex;
+
+  &:active {
+    @include borderConcave;
+  }
+
+  &.flag {
+    background-image: $sprites;
+    background-size: 100px;
+    background-position: 177px 48px;
+    &:active {
+      @include borderConvex;
+    }
+  }
+
+  &.open {
+    border: 1px solid #787878;
+    background-image: $sprites;
+    background-size: 115px;
+    background-position: 177px 55px;
+
+    &.one {
+      background-position: 88px 109px;
+    }
+
+    &.two {
+      background-position: 61px 109px;
+    }
+
+    &.three {
+      background-position: 34px 109px;
+    }
+
+    &.four {
+      background-position: 0 82px;
+    }
+
+    &.five {
+      background-position: 88px 82px;
+    }
+
+    &.six {
+      background-position: 61px 82px;
+    }
+
+    &.seven {
+      background-position: 34px 82px;
+    }
+
+    &.eight {
+      background-position: 1px 55px;
+    }
+
+    &.bomb {
+      background-position: 0 110px;
+
+      &.red {
+        background-color: #ec0701;
+      }
+    }
+  }
+}
